@@ -121,6 +121,9 @@
       <ShowProgress>LinkVerbose</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
+  <PropertyGroup>
+    <LocalDebuggerWorkingDirectory>$(TargetDir)</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="src\actors.c" />
     <ClCompile Include="src\animlib.c" />
