@@ -7937,7 +7937,7 @@ void getnames(void)
 		{
 			printf("\n*** One or more players do not have the same xDuke version:\n\n");
 			for(l=0,i=connecthead;i>=0;i=connectpoint2[i])
-				printf("Player [%-10s] is using Chocolate DukeNukem3D v%d.%d\n", ud.user_name[i], 
+				printf("Player [%-10s] is using Sgt. Nukem 3D v%d.%d\n", ud.user_name[i], 
 				ud.rev[i][2],ud.rev[i][3]);
 			Error(EXIT_SUCCESS, "");
 		}		
@@ -7996,7 +7996,9 @@ void findGRPToUse(uint8_t * groupfilefullpath)
 
 	if(getGameDir()[0] != '\0')
 	{
-		sprintf(groupfilefullpath, "%s\\%s", getGameDir(), baseDir);
+		sprintf(groupfilefullpath, "%s\\%s", 
+			//"C:\\Coding\\Projekte\\chocolate_duke3D_real\\bin" /*
+			getGameDir(), baseDir);
 		hFind = FindFirstFile(groupfilefullpath, &FindFileData);
 		if (hFind == INVALID_HANDLE_VALUE)
 		{
@@ -8009,7 +8011,10 @@ void findGRPToUse(uint8_t * groupfilefullpath)
 		sprintf(groupfilefullpath, "%s", baseDir);
     
 	printf("Searching '%d':\n\n",groupfilefullpath);
-	hFind = FindFirstFile(groupfilefullpath,&FindFileData);
+	hFind = FindFirstFile( 
+		//"C:\\Coding\\Projekte\\chocolate_duke3D_real\\bin\\duke3d*.grp",
+		groupfilefullpath,
+		&FindFileData);
     
 	if ( hFind==INVALID_HANDLE_VALUE )
 		Error(EXIT_SUCCESS, "Can't find '%s'\n", groupfilefullpath);
@@ -8143,7 +8148,7 @@ int main(int argc,char  **argv)
 	//		"group of known dukers who know what they are doing should be using\n"
 	//		"it. Please report new bugs at xd@m-klein.com or on DX forums. Thx!\n\n");
 	
-	printf("*** Chocolate DukeNukem3D v%d.%d ***\n\n", CHOCOLATE_DUKE_REV_X, CHOCOLATE_DUKE_REV_DOT_Y);
+	printf("*** Sgt. Nukem 3D v%d.%d ***\n\n", CHOCOLATE_DUKE_REV_X, CHOCOLATE_DUKE_REV_DOT_Y);
 
 	// FIX_00033: Fake multi and AI are now fully working
 	ud.multimode = 1;  // xduke: must be done before checkcommandline or that will prevent Fakeplayer and AI
@@ -10599,7 +10604,7 @@ void takescreenshot(void)
 	time(&time4file);
 	tmHMS = localtime(&time4file);
 
-	sprintf(text, "Chocolate DukeNukem3D(v%d.%d) %.4d.%.2d.%.2d %.2dh%.2dm%.2ds", 
+	sprintf(text, "Sgt. Nukem 3D (v%d.%d) %.4d.%.2d.%.2d %.2dh%.2dm%.2ds", 
 			CHOCOLATE_DUKE_REV_X,
 			CHOCOLATE_DUKE_REV_DOT_Y,
 			tmHMS->tm_year+1900,

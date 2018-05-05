@@ -496,7 +496,8 @@ int connect_to_everyone()
 				enet_address_get_host(&address, szHostName, 64);
 				printf("Creating peer: %s:%d\n", szHostName, address.port);
 	
-				g_Peers[i] = enet_host_connect (g_Server, & address, 2); 
+				// Sgt- fix build
+				//////g_Peers[i] = enet_host_connect (g_Server, & address, 2); 
 	
 				if(g_Peers[i] == NULL)
 				{
@@ -532,8 +533,10 @@ void Send_Peer_Gretting()
 	g_ConnMode = CONN_MODE_GREETING;
 
     while (my_id == 0)  /* player number is based on id, low to high. */
+
 	{
-		my_id = (unsigned short)enet_time_get_raw();//(unsigned short) rand();
+		// Sgt. - fix build
+		//////my_id = (unsigned short)enet_time_get_raw();//(unsigned short) rand();
 	}
 
 	printf("My client id is %d\n", my_id);
@@ -957,10 +960,11 @@ int CreateServer(char* ip, int nPort, int nMaxPlayers)
     /* Bind the server to port 1234. */
     address.port = nPort;
 
-    g_Server = enet_host_create (& address /* the address to bind the server host to */, 
-                nMaxPlayers /* allow up to 32 clients and/or outgoing connections */,
-                0 /* assume any amount of incoming bandwidth */,
-                0 /* assume any amount of outgoing bandwidth */);
+	// Sgt. - fix build
+    //////g_Server = enet_host_create (& address /* the address to bind the server host to */, 
+    //////            nMaxPlayers /* allow up to 32 clients and/or outgoing connections */,
+    //////            0 /* assume any amount of incoming bandwidth */,
+    //////            0 /* assume any amount of outgoing bandwidth */);
    
 	if (g_Server == NULL)
     {

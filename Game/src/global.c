@@ -157,7 +157,8 @@ int32_t vel, svel, angvel, horiz, ototalclock, respawnactortime=768, respawnitem
 
 int32_t script[MAXSCRIPTSIZE],*scriptptr,*insptr,*labelcode,labelcnt;
 int32_t *actorscrptr[MAXTILES],*parsing_actor;
-char  *label,*textptr,error,warning ;
+char  *label, *textptr;
+int	error_count, warning_count;
 uint8_t killit_flag;
 uint8_t  *music_pointer;
 uint8_t  actortype[MAXTILES];

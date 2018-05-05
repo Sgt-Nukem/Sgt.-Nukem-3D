@@ -3116,7 +3116,7 @@ else
 				}
 				
 				gametext(c,47+i*8,text,0,2+8+16);
-				gametext(c+121,47+i*8,(MouseDigitalAxeMapping[i>>1][i&1]!=-1)?CONFIG_FunctionNumToName(MouseDigitalAxeMapping[i>>1][i&1]):"...",0,2+8+16);
+				//gametext(c+121,47+i*8,(MouseDigitalAxeMapping[i>>1][i&1]!=-1)?CONFIG_FunctionNumToName(MouseDigitalAxeMapping[i>>1][i&1]):"...",0,2+8+16);
 			}
 
 			gametext(320>>1,47+(4+1)*8,"*** USE ARROWS OR DEL KEY ***",0,2+8+16);

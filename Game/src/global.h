@@ -58,8 +58,8 @@ void Shutdown(void);
 #define Swapint32_t IntelLong
 #endif
 
-int32_t MotoLong (int32_t l);
-int32_t IntelLong (int32_t l);
+signed int MotoLong (signed int fuckerlng);
+signed int IntelLong (signed int fuckerlng);
 
 void Error (int errorType, char  *error, ...);
 

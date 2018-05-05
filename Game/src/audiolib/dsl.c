@@ -221,11 +221,11 @@ unsigned DSL_GetPlaybackRate( void )
 	return _SampleRate;
 }
 
-uint32_t DisableInterrupts( void )
+unsigned int DisableInterrupts( void )
 {
 	return 0;
 }
 
-void RestoreInterrupts( uint32_t flags )
+void RestoreInterrupts( unsigned int flags )
 {
 }

@@ -12,7 +12,7 @@
 #include "cache.h"
 #include "fixedPoint_math.h"
 #include "../../Game/src/global.h"
-#include <strings.h>
+//#include <strings.h>
 
 char game_dir[512];
 
@@ -53,7 +53,8 @@ int32_t initgroupfile(const char  *filename)
 	uint8_t         buf[16]                 ;
 	int32_t         i, j, k                 ;
     grpArchive_t*   archive                 ;
-    
+    	char buffy[256];
+		char *peter;
     
     
 	printf("Loading %s ...\n", filename);
@@ -71,10 +72,22 @@ int32_t initgroupfile(const char  *filename)
 	//groupfil_memory[numgroupfiles] = NULL; // addresses of raw GRP files in memory
 	//groupefil_crc32[numgroupfiles] = 0;
     
-	archive->fileDescriptor = open(filename,O_BINARY|O_RDONLY,S_IREAD);
-    
+	errno = 0;
+
+	 peter = getcwd(buffy, 255);
+	
+	
+	errno =
+				0;
+
+
+	archive->fileDescriptor = open(
+		//"C:\\Coding\\Projekte\\chocolatde_duke3D_real\\bin\\duke3d_13.grp",
+		filename,
+		O_BINARY|O_RDONLY,S_IREAD);
     if (archive->fileDescriptor < 0){
-        printf("Error: Unable to open file %s.\n",filename);
+		printf("Error: Unable to open file %s. Error: %d\n",filename, errno);
+		perror("Hello ");
         getchar();
         exit(0);
     }

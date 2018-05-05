@@ -98,6 +98,7 @@ extern uint8_t  grpVersion;
 #define JONOF_ID  3
 
 //Chocolate DukeNukem3D is a fork of xDuke v17.9
+//Sgt. Nukem 3D is a fork of Chokolate DukeNukem3D
 
 #define DUKE_ID			XDUKE_ID
 #define	CHOCOLATE_DUKE_REV_X		1
@@ -191,7 +192,8 @@ extern int g_iTicksPerFrame;
 
 // #define GC (TICSPERFRAME*44)
 
-#define NUM_SOUNDS 450
+// (+50) = fix for Redneck Rampage
+#define NUM_SOUNDS (450 + 50)
 
 #define    ALT_IS_PRESSED ( KB_KeyPressed( sc_RightAlt ) || KB_KeyPressed( sc_LeftAlt ) )
 #define    SHIFTS_IS_PRESSED ( KB_KeyPressed( sc_RightShift ) || KB_KeyPressed( sc_LeftShift ) )
@@ -548,7 +550,8 @@ extern uint8_t  playerreadyflag[MAXPLAYERS],playerquitflag[MAXPLAYERS];
 extern char  sounds[NUM_SOUNDS][14];
 
 extern int32_t script[MAXSCRIPTSIZE],*scriptptr,*insptr,*labelcode,labelcnt;
-extern char  *label,*textptr,error,warning;
+extern char  *label, *textptr;
+extern int error_count, warning_count;
 extern uint8_t killit_flag;
 extern int32_t *actorscrptr[MAXTILES],*parsing_actor;
 extern uint8_t  actortype[MAXTILES];

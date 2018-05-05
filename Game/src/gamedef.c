@@ -383,7 +383,7 @@ int32_t transword(void) //Returns its code #
         printf("  * ERROR!(L%hd) Expecting a SPACE between '*/' and '%s'.\n",line_number,tempbuf+2);
     else printf("  * ERROR!(L%hd) Expecting key word, but found '%s'.\n",line_number,tempbuf);
 
-    error++;
+    error_count++;
     return -1;
 }
 
@@ -411,7 +411,7 @@ void transnum(void)
     for(i=0;i<NUMKEYWORDS;i++)
         if( strcmp( label+(labelcnt<<6),keyw[i]) == 0 )
     {
-        error++;
+        error_count++;
         printf("  * ERROR!(L%hd) Symbol '%s' is a key word.\n",line_number,label+(labelcnt<<6));
         textptr+=l;
     }
@@ -431,7 +431,7 @@ void transnum(void)
     if( isdigit(*textptr) == 0 && *textptr != '-')
     {
         printf("  * ERROR!(L%hd) Parameter '%s' is undefined.\n",line_number,tempbuf);
-        error++;
+        error_count++;
         textptr+=l;
         return;
     }
@@ -452,7 +452,7 @@ uint8_t  parsecommand(int readfromGRP)
     short temp_line_number;
     int fp;
 
-    if( error > 12 || ( *textptr == '\0' ) || ( *(textptr+1) == '\0' ) ) return 1;
+    if( error_count > 12 || ( *textptr == '\0' ) || ( *(textptr+1) == '\0' ) ) return 1;
 
     tw = transword();
 
@@ -471,7 +471,7 @@ uint8_t  parsecommand(int readfromGRP)
                 if( *textptr == 0 )
                 {
                     printf("  * ERROR!(L%d) Found '/*' with no '*/'.\n",j);
-                    error++;
+                    error_count++;
                     return 0;
                 }
             }
@@ -496,7 +496,7 @@ uint8_t  parsecommand(int readfromGRP)
             for(i=0;i<NUMKEYWORDS;i++)
                 if( strcmp( label+(labelcnt<<6),keyw[i]) == 0 )
                 {
-                    error++;
+                    error_count++;
                     printf("  * ERROR!(L%hd) Symbol '%s' is a key word.\n",line_number,label+(labelcnt<<6));
                     return 0;
                 }
@@ -513,7 +513,7 @@ uint8_t  parsecommand(int readfromGRP)
             if(j==labelcnt)
             {
                 printf("  * ERROR!(L%hd) State '%s' not found.\n",line_number,label+(labelcnt<<6));
-                error++;
+                error_count++;
             }
             scriptptr++;
             return 0;
@@ -530,19 +530,19 @@ uint8_t  parsecommand(int readfromGRP)
             if( parsing_state == 0 )
             {
                 printf("  * ERROR!(L%hd) Found 'ends' with no 'state'.\n",line_number);
-                error++;
+                error_count++;
             }
 //            else
             {
                 if( num_squigilly_brackets > 0 )
                 {
                     printf("  * ERROR!(L%hd) Found more '{' than '}' before 'ends'.\n",line_number);
-                    error++;
+                    error_count++;
                 }
                 if( num_squigilly_brackets < 0 )
                 {
                     printf("  * ERROR!(L%hd) Found more '}' than '{' before 'ends'.\n",line_number);
-                    error++;
+                    error_count++;
                 }
                 parsing_state = 0;
             }
@@ -554,7 +554,7 @@ uint8_t  parsecommand(int readfromGRP)
             for(i=0;i<NUMKEYWORDS;i++)
                 if( strcmp( label+(labelcnt<<6),keyw[i]) == 0 )
                 {
-                    error++;
+                    error_count++;
                     printf("  * ERROR!(L%hd) Symbol '%s' is a key word.\n",line_number,label+(labelcnt<<6));
                     return 0;
                 }
@@ -563,7 +563,7 @@ uint8_t  parsecommand(int readfromGRP)
             {
                 if( strcmp(label+(labelcnt<<6),label+(i<<6)) == 0 )
                 {
-                    warning++;
+                    warning_count++;
                     printf("  * WARNING.(L%hd) Duplicate definition '%s' ignored.\n",line_number,label+(labelcnt<<6));
                     break;
                 }
@@ -615,7 +615,7 @@ uint8_t  parsecommand(int readfromGRP)
                 for(i=0;i<NUMKEYWORDS;i++)
                     if( strcmp( label+(labelcnt<<6),keyw[i]) == 0 )
                 {
-                    error++;
+                    error_count++;
                     printf("  * ERROR!(L%hd) Symbol '%s' is a key word.\n",line_number,label+(labelcnt<<6));
                     return 0;
                 }
@@ -623,7 +623,7 @@ uint8_t  parsecommand(int readfromGRP)
                 for(i=0;i<labelcnt;i++)
                     if( strcmp(label+(labelcnt<<6),label+(i<<6)) == 0 )
                     {
-                        warning++;
+                        warning_count++;
                         printf("  * WARNING.(L%hd) Duplicate move '%s' ignored.\n",line_number,label+(labelcnt<<6));
                         break;
                     }
@@ -725,7 +725,7 @@ uint8_t  parsecommand(int readfromGRP)
 				fp = TCkopen4load(includedconfile,readfromGRP);
 				if(fp <= 0)
 				{
-					error++;
+					error_count++;
 					printf("  * ERROR!(ln%hd) Could not find '%s'.\n",line_number,label+(labelcnt<<6));
 
 					printf("ERROR: could not open (%s)\n", includedconfile);
@@ -772,7 +772,7 @@ uint8_t  parsecommand(int readfromGRP)
                 for(i=0;i<NUMKEYWORDS;i++)
                     if( strcmp( label+(labelcnt<<6),keyw[i]) == 0 )
                     {
-                        error++;
+                        error_count++;
                         printf("  * ERROR!(L%hd) Symbol '%s' is a key word.\n",line_number,label+(labelcnt<<6));
                         return 0;
                     }
@@ -780,7 +780,7 @@ uint8_t  parsecommand(int readfromGRP)
                 for(i=0;i<labelcnt;i++)
                     if( strcmp(label+(labelcnt<<6),label+(i<<6)) == 0 )
                     {
-                        warning++;
+                        warning_count++;
                         printf("  * WARNING.(L%hd) Duplicate ai '%s' ignored.\n",line_number,label+(labelcnt<<6));
                         break;
                     }
@@ -826,7 +826,7 @@ uint8_t  parsecommand(int readfromGRP)
                 for(i=0;i<NUMKEYWORDS;i++)
                     if( strcmp( label+(labelcnt<<6),keyw[i]) == 0 )
                     {
-                        error++;
+                        error_count++;
                         printf("  * ERROR!(L%hd) Symbol '%s' is a key word.\n",line_number,label+(labelcnt<<6));
                         return 0;
                     }
@@ -834,7 +834,7 @@ uint8_t  parsecommand(int readfromGRP)
                 for(i=0;i<labelcnt;i++)
                     if( strcmp(label+(labelcnt<<6),label+(i<<6)) == 0 )
                     {
-                        warning++;
+                        warning_count++;
                         printf("  * WARNING.(L%hd) Duplicate action '%s' ignored.\n",line_number,label+(labelcnt<<6));
                         break;
                     }
@@ -859,13 +859,13 @@ uint8_t  parsecommand(int readfromGRP)
             if( parsing_state )
             {
                 printf("  * ERROR!(L%hd) Found 'actor' within 'state'.\n",line_number);
-                error++;
+                error_count++;
             }
 
             if( parsing_actor )
             {
                 printf("  * ERROR!(L%hd) Found 'actor' within 'actor'.\n",line_number);
-                error++;
+                error_count++;
             }
 
             num_squigilly_brackets = 0;
@@ -914,13 +914,13 @@ uint8_t  parsecommand(int readfromGRP)
             if( parsing_state )
             {
                 printf("  * ERROR!(L%hd) Found 'useritem' within 'state'.\n",line_number);
-                error++;
+                error_count++;
             }
 
             if( parsing_actor )
             {
                 printf("  * ERROR!(L%hd) Found 'useritem' within 'actor'.\n",line_number);
-                error++;
+                error_count++;
             }
 
             num_squigilly_brackets = 0;
@@ -1022,7 +1022,7 @@ uint8_t  parsecommand(int readfromGRP)
             else
             {
                 scriptptr--;
-                error++;
+                error_count++;
                 printf("  * ERROR!(L%hd) Found 'else' with no 'if'.\n",line_number);
             }
 
@@ -1113,7 +1113,7 @@ uint8_t  parsecommand(int readfromGRP)
             if( num_squigilly_brackets < 0 )
             {
                 printf("  * ERROR!(L%hd) Found more '}' than '{'.\n",line_number);
-                error++;
+                error_count++;
             }
             return 1;
         case 76:
@@ -1150,7 +1150,7 @@ uint8_t  parsecommand(int readfromGRP)
                 if(i >= 32)
                 {
                     printf("  * ERROR!(L%hd) Volume name exceeds character size limit of 32.\n",line_number);
-                    error++;
+                    error_count++;
                     while( *textptr != 0x0a ) textptr++;
                     break;
                 }
@@ -1177,7 +1177,7 @@ uint8_t  parsecommand(int readfromGRP)
                 if(i >= 32)
                 {
                     printf("  * ERROR!(L%hd) Skill name exceeds character size limit of 32.\n",line_number);
-                    error++;
+                    error_count++;
                     while( *textptr != 0x0a ) textptr++;
                     break;
                 }
@@ -1207,7 +1207,7 @@ uint8_t  parsecommand(int readfromGRP)
                 if(i > 127)
                 {
                     printf("  * ERROR!(L%hd) Level file name exceeds character size limit of 128.\n",line_number);
-                    error++;
+                    error_count++;
                     while( *textptr != ' ') textptr++;
                     break;
                 }
@@ -1243,7 +1243,7 @@ uint8_t  parsecommand(int readfromGRP)
                 if(i >= 32)
                 {
                     printf("  * ERROR!(L%hd) Level name exceeds character size limit of 32.\n",line_number);
-                    error++;
+                    error_count++;
                     while( *textptr != 0x0a ) textptr++;
                     break;
                 }
@@ -1262,7 +1262,7 @@ uint8_t  parsecommand(int readfromGRP)
             if(k >= NUMOFFIRSTTIMEACTIVE)
             {
                 printf("  * ERROR!(L%hd) Quote amount exceeds limit of %d characters.\n",line_number,NUMOFFIRSTTIMEACTIVE);
-                error++;
+                error_count++;
             }
             scriptptr--;
             i = 0;
@@ -1276,7 +1276,7 @@ uint8_t  parsecommand(int readfromGRP)
                 if(i >= 64)
                 {
                     printf("  * ERROR!(L%hd) Quote exceeds character size limit of 64.\n",line_number);
-                    error++;
+                    error_count++;
                     while( *textptr != 0x0a ) textptr++;
                     break;
                 }
@@ -1290,7 +1290,7 @@ uint8_t  parsecommand(int readfromGRP)
             if(k >= NUM_SOUNDS)
             {
                 printf("  * ERROR!(L%hd) Exceeded sound limit of %d.\n",line_number,NUM_SOUNDS);
-                error++;
+                error_count++;
             }
             scriptptr--;
             i = 0;
@@ -1305,7 +1305,7 @@ uint8_t  parsecommand(int readfromGRP)
                 {
                     puts(sounds[k]);
                     printf("  * ERROR!(L%hd) Sound filename exceeded limit of 13 characters.\n",line_number);
-                    error++;
+                    error_count++;
                     while( *textptr != ' ' ) textptr++;
                     break;
                 }
@@ -1333,14 +1333,14 @@ uint8_t  parsecommand(int readfromGRP)
             if( parsing_actor == 0 )
             {
                 printf("  * ERROR!(L%hd) Found 'enda' without defining 'actor'.\n",line_number);
-                error++;
+                error_count++;
             }
 //            else
             {
                 if( num_squigilly_brackets > 0 )
                 {
                     printf("  * ERROR!(L%hd) Found more '{' than '}' before 'enda'.\n",line_number);
-                    error++;
+                    error_count++;
                 }
                 parsing_actor = 0;
             }
@@ -1490,7 +1490,7 @@ void passone(int readfromGRP)
 
     while( parsecommand(readfromGRP) == 0 );
 
-    if( (error+warning) > 12)
+    if( (error_count+warning_count) > 12)
         puts(  "  * ERROR! Too many warnings or errors.");
 
 }
@@ -1579,18 +1579,18 @@ void loadefs(char  *filenam, char  *mptr, int readfromGRP)
 
     labelcnt = 0;
     scriptptr = script+1;
-    warning = 0;
-    error = 0;
+    warning_count = 0;
+    error_count = 0;
     line_number = 1;
     total_lines = 0;
 
     passone(readfromGRP); //Tokenize
     *script = (int32_t) scriptptr;
 
-    if(warning|error)
-        printf("Found %hhd warning(s), '%c' error(s).\n",warning,error);
+    if(warning_count|error_count)
+        printf("Found %d warning(s), %d error(s).\n",warning_count,error_count);
 
-    if(error)
+    if(error_count)
     {
 		Error(EXIT_SUCCESS, "ERROR in CON(%s)\n", filenam);
     }

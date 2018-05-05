@@ -31,11 +31,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef __MULTIVOC_H
 #define __MULTIVOC_H
 
+#include <stdint.h>
 //#include <windows.h>
 #include <SDL.h>
 
 // forward declare
 //struct SDL_mutex;
+
+// Sgt. # beautiful HACKS
+//#define uint32_t unsigned int
+//#define uint8_t unsigned char
+//#define int64_t signed long
+
 
 
 #define MV_MinVoiceHandle  1
