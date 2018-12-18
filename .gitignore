@@ -1,0 +1,7 @@
+/DUKE3D/*.GRP
+/DUKE3D/*/
+/Engine/bin
+/Engine/obj
+/Engine/*.user
+/Game/obj
+/Game/*.user

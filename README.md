@@ -1,45 +1,49 @@
-Chocolate Duke3D
-================
+﻿Sgt. Nukem 3D
+=============
 
-Chocolate Duke Nukem 3D is the equivalent of [Chocolate Doom](http://www.chocolate-doom.org/wiki/index.php/Chocolate_Doom).
-
-A port that:
-
-1. Remains as faithful as possible to the original source code.
-2. Portable and compiling in one click on Windows, OS X and Linux.
-3. Aimed at education, with lots of comments and documentation added in order to help programmers to understand and learn.
+Sgt. Nukem 3D is a 'chocolatey' Windows 10 port of Duke Nukem 3D and the BUILD engine.
 
 
-Requirements
-============
+Aimed specifically to:
 
-[SDL](http://libsdl.org) and SDL_mixer to compile and run the code.
+1. 'git clone' the repository to a modern Windows 10 PC
+2. double-click the 'Duke Nukem 3D (VS 2017).sln' file to fire up 'Visual Studio 2017'
+3. let Visual Studio handle all the dependencies
+4. press 'F5' and be chewing gum in no time
 
-An original copy of Duke Nukem 3D (specifically the DUKE3D.GRP file from the original CD).
-
-
-Build
-=====
-
-Linux: Use 'make' (.grp in binary working directory and with rw permissions)
-Windows: Use Visual Studio 2005 or Visual Studio 2012  
-OS X: Use Xcode 4.0  
+5. (...while remaining as faithful as possible to the original source code)
 
 
-Contributors
-============
 
-**Project Initiator:** Fabien Sanglard 
-**Linux Tweaks:** Juan Manuel Borges Caño 
+To just play:
+=============
 
-More Information
-================
+1. download the latest release under [releases](https://github.com/Sgt-Nukem/Sgt.-Nukem-3D/releases)
+2. unzip the file
+3. double-click the **<pre>DukeNukem3D.exe</pre>** in the <pre>DUKE3D</pre> folder
 
-[Linux Integration](http://juanmabcblog.blogspot.com/2013/07/chocolate-duke3d.html)
-[Review of the Duke 3D source code](http://fabiensanglard.net/duke3d/)
 
-chocolate-duke3d (Chocolate Duke Nukem 3D) Linux integration licensed GPLv3 by Juan Manuel Borges Caño
-* blog < http://juanmabcblog.blogspot.com >
-* mail < mailto:juanmabcmail@gmail.com >
 
-Copyright (C) 2013 - 2014 Juan Manuel Borges Caño :-) Thanks through email (suggested subject chocolate-duke3d) or/and Payments through blog with BitCoin, Flattr, Western Union and PayPal Welcome :-)
+Origin:
+=======
+
+It is a fork of the great [Chocolate Duke3D](https://github.com/fabiensanglard/chocolate_duke3D),
+which aims to being the equivalent of [Chocolate Doom](http://www.chocolate-doom.org/wiki/index.php/Chocolate_Doom).
+
+
+
+Requirements:
+=============
+
+1. Windows 10
+2. Visual Studio 2017 (e.g. Community Edition)
+
+
+
+Notes:
+======
+
+The [Duke Nukem 3D (Shareware Episode v1.3)](https://legacy.3drealms.com/duke3d/) is already included. Don't wait for Christmas!
+
+
+
