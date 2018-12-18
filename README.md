@@ -16,16 +16,16 @@ Aimed specifically to:
 
 
 To just play:
-=============
+-------------
 
 1. download the latest release under [releases](https://github.com/Sgt-Nukem/Sgt.-Nukem-3D/releases)
 2. unzip the file
-3. double-click the **<pre>DukeNukem3D.exe</pre>** in the <pre>DUKE3D</pre> folder
+3. double-click the `DukeNukem3D.exe` in the `DUKE3D` folder
 
 
 
 Origin:
-=======
+-------
 
 It is a fork of the great [Chocolate Duke3D](https://github.com/fabiensanglard/chocolate_duke3D),
 which aims to being the equivalent of [Chocolate Doom](http://www.chocolate-doom.org/wiki/index.php/Chocolate_Doom).
@@ -33,7 +33,7 @@ which aims to being the equivalent of [Chocolate Doom](http://www.chocolate-doom
 
 
 Requirements:
-=============
+-------------
 
 1. Windows 10
 2. Visual Studio 2017 (e.g. Community Edition)
@@ -41,9 +41,6 @@ Requirements:
 
 
 Notes:
-======
+------
 
 The [Duke Nukem 3D (Shareware Episode v1.3)](https://legacy.3drealms.com/duke3d/) is already included. Don't wait for Christmas!
-
-
-
